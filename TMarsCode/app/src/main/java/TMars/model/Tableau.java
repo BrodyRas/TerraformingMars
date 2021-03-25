@@ -2,20 +2,20 @@ package TMars.model;
 
 public class Tableau {
 
-    Corporation corp;
-    int terraformerRating;
-    int credits;
-    int moneyProduction;
-    int steel;
-    int steelProduction;
-    int titanium;
-    int titaniumProduction;
-    int plants;
-    int plantProduction;
-    int power;
-    int powerProduction;
-    int heat;
-    int heatProduction;
+    private Corporation corp;
+    private int terraformerRating;
+    private int credits;
+    private int moneyProduction;
+    private int steel;
+    private int steelProduction;
+    private int titanium;
+    private int titaniumProduction;
+    private int plants;
+    private int plantProduction;
+    private int power;
+    private int powerProduction;
+    private int heat;
+    private int heatProduction;
 
     public Tableau(Corporation corp)
     {

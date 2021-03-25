@@ -7,13 +7,13 @@ import java.util.ArrayList;
  * Describes the basics of a card, extended by GreenCard, BlueCard, RedCard, Prelude, Corporation
  */
 public abstract class Card {
-    String id;
-    int cost;
-    ArrayList<Integer> tags;
-    Requirement requires;
-    Score points;
-    ArrayList<Integer> adjustProduction;
-    ArrayList<Integer> adjustResources;
+    private String id;
+    private int cost;
+    private ArrayList<Integer> tags;
+    private Requirement requires;
+    private Score points;
+    private ArrayList<Integer> adjustProduction;
+    private ArrayList<Integer> adjustResources;
 
     public Card(){};
 

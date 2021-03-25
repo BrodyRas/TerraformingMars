@@ -16,18 +16,20 @@ public class Tableau {
         this.corp = corp;
         terraformerRating = 20;
 
-        for(TagProvider.ResourceTag t : TagProvider.ResourceTag.values()){
-            resources.put(t, 0);
-            resources.put(t, 0);
+        resources = new HashMap<>();
+        production = new HashMap<>();
+        for(TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()){
+            resources.put(tag, 0);
+            production.put(tag, 0);
         }
     }
 
     // UTILITY
-    public void updateResource(TagProvider.ResourceTag tag, int change){
-        resources.put(tag, resources.get(tag) + change);
-    }
-    public void updateProduction(TagProvider.ResourceTag tag, int change){
-        production.put(tag, production.get(tag) + change);
+    // Increase resources at the end of the generation, based on your production of that resource
+    public void produceResources(){
+        for(TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()) {
+            updateResource(tag, production.get(tag));
+        }
     }
 
     // GETTERS / SETTERS
@@ -35,4 +37,17 @@ public class Tableau {
     public void setCorp(Corporation corp) { this.corp = corp; }
     public int getTerraformerRating() { return terraformerRating; }
     public void setTerraformerRating(int terraformerRating) { this.terraformerRating = terraformerRating; }
+    public int getResource(TagProvider.ResourceTag tag){
+        return resources.get(tag);
+    }
+    public int getProduction(TagProvider.ResourceTag tag){
+        return production.get(tag);
+    }
+    // For both update functions, "change" can obviously also be negative
+    public void updateResource(TagProvider.ResourceTag tag, int change){
+        resources.put(tag, resources.get(tag) + change);
+    }
+    public void updateProduction(TagProvider.ResourceTag tag, int change){
+        production.put(tag, production.get(tag) + change);
+    }
 }

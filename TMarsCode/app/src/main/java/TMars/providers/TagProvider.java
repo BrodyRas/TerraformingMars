@@ -2,6 +2,7 @@ package TMars.providers;
 
 public class TagProvider {
     public enum Tags {
+        Credits,
         Building,
         Space,
         Science,

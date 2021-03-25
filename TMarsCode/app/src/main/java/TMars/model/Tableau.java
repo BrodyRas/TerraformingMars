@@ -8,25 +8,25 @@ public class Tableau {
 
     private Corporation corp;
     private int terraformerRating;
-    private HashMap<TagProvider.Tags, Integer> resources;
-    private HashMap<TagProvider.Tags, Integer> production;
+    private HashMap<TagProvider.ResourceTag, Integer> resources;
+    private HashMap<TagProvider.ResourceTag, Integer> production;
 
     public Tableau(Corporation corp)
     {
         this.corp = corp;
         terraformerRating = 20;
 
-        for(TagProvider.Tags t : TagProvider.Tags.values()){
+        for(TagProvider.ResourceTag t : TagProvider.ResourceTag.values()){
             resources.put(t, 0);
             resources.put(t, 0);
         }
     }
 
     // UTILITY
-    public void updateResource(TagProvider.Tags tag, int change){
+    public void updateResource(TagProvider.ResourceTag tag, int change){
         resources.put(tag, resources.get(tag) + change);
     }
-    public void updateProduction(TagProvider.Tags tag, int change){
+    public void updateProduction(TagProvider.ResourceTag tag, int change){
         production.put(tag, production.get(tag) + change);
     }
 

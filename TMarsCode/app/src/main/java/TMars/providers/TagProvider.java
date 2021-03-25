@@ -1,7 +1,7 @@
 package TMars.providers;
 
 public class TagProvider {
-    public enum Tags {
+    public enum CardTag {
         Credits,
         Building,
         Space,
@@ -15,5 +15,14 @@ public class TagProvider {
         City,
         Event,
         Wild,
+    }
+
+    public enum ResourceTag {
+        Credits,
+        Iron,
+        Titanium,
+        Plant,
+        Energy,
+        Heat
     }
 }

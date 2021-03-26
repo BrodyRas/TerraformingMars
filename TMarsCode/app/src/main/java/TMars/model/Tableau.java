@@ -14,7 +14,7 @@ public class Tableau {
     public Tableau(Corporation corp)
     {
         this.corp = corp;
-        terraformerRating = 20;
+        terraformerRating = 20; // because that's the default start
 
         resources = new HashMap<>();
         production = new HashMap<>();

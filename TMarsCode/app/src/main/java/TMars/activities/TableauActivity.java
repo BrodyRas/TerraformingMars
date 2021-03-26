@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import TMars.model.Player;
 import edu.byu.cs.tweeter.R;
 import edu.byu.cs.tweeter.view.util.ImageUtils;
 
@@ -19,22 +20,19 @@ import com.google.android.material.tabs.TabLayout;
  */
 public class TableauActivity extends AppCompatActivity {
 
-    public static final String CURRENT_USER_KEY = "CurrentUser";
-    public static final String AUTH_TOKEN_KEY = "AuthTokenKey";
+    public static final String CURRENT_PLAYER_KEY = "CurrentUser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User user = (User) getIntent().getSerializableExtra(CURRENT_USER_KEY);
-        if(user == null) {
-            throw new RuntimeException("User not passed to activity");
+        Player player = (Player) getIntent().getSerializableExtra(CURRENT_PLAYER_KEY);
+        if(player == null) {
+            player = new Player();
         }
 
-        AuthToken authToken = (AuthToken) getIntent().getSerializableExtra(AUTH_TOKEN_KEY);
-
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), user, authToken);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);

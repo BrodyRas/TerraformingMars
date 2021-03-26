@@ -18,66 +18,35 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="match_parent"/>
 
-            <ImageView
-                android:id="@+id/userImage"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:contentDescription="@string/userImageContentDescription" />
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_toEndOf="@+id/userImage"
-                android:layout_centerVertical="true">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/marsfont"
+                android:text="Corporation Name"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/userName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/homePageTitle"
-                    android:textSize="24sp"/>
-
-                <TextView
-                    android:id="@+id/userAlias"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/homePageTitle"
-                    android:textSize="24sp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/followeeCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/followeeCount"
-                        android:paddingHorizontal="5sp"/>
-
-                    <Space
-                        android:layout_width="5sp"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/followerCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/followerCount"
-                        android:paddingHorizontal="5sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/generation_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/marsfont"
+                android:text="End Generation" />
 
         </RelativeLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -91,16 +60,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:scaleType="center"
-        app:backgroundTint="@color/white"
-        app:srcCompat="@drawable/feather" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

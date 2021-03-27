@@ -1,4 +1,4 @@
-package edu.byu.cs.tweeter.view.main;
+package TMars.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import edu.byu.cs.tweeter.R;
+import edu.byu.cs.tweeter.view.main.PageViewModel;
 
 /**
  * A placeholder fragment containing a simple view. This is the fragment that displays on tabs of

@@ -21,8 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.main.MainActivity"
-            android:label="@string/title_activity_main">
+            android:name="TMars.activities.SetupActivity"
+            android:label="@string/title_activity_setup">
+        </activity>
+        <activity
+            android:name="TMars.activities.TableauActivity"
+            android:label="@string/title_activity_tableau">
         </activity>
     </application>
 

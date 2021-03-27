@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public abstract class Card {
     private String id;
+    private String name;
     private int cost;
     private ArrayList<Integer> tags;
     private Requirement requires;

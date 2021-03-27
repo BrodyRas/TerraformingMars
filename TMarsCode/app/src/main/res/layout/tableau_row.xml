@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="TMars.fragments.TableauFragment"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/resourceImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/resourceImageContentDescription" />
+    <androidx.legacy.widget.Space
+        android:id="@+id/spacer"
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+        android:layout_toEndOf="@+id/resourceImage"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/spacer"
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:id="@+id/use"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/minus"
+            android:layout_centerVertical="true" />
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/marsfont"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:text="0" />
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="60dp" />
+        <Button
+            android:id="@+id/get"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/plus"
+            android:layout_centerVertical="true" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/prod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:id="@+id/increase"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/minus"
+            android:layout_centerVertical="true" />
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:id="@+id/production"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/production"
+            android:fontFamily="@font/marsfont"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:text="0" />
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="60dp" />
+        <Button
+            android:id="@+id/decrease"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/plus"
+            android:layout_centerVertical="true" />
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

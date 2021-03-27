@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import TMars.model.Corporation;
 import TMars.model.Player;
 import edu.byu.cs.tweeter.R;
 import edu.byu.cs.tweeter.view.util.ImageUtils;
@@ -21,41 +22,28 @@ import com.google.android.material.tabs.TabLayout;
 public class TableauActivity extends AppCompatActivity {
 
     public static final String CURRENT_PLAYER_KEY = "CurrentUser";
+    public static final String CURRENT_CORP_KEY = "CurrentCorp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tableau);
 
         Player player = (Player) getIntent().getSerializableExtra(CURRENT_PLAYER_KEY);
         if(player == null) {
-            player = new Player();
+            int corpID = (int) getIntent().getSerializableExtra(CURRENT_CORP_KEY);
+            player = new Player(new Corporation(corpID));
         }
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), player);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+        TextView corpName = findViewById(R.id.corp_name);
 
-        // We should use a Java 8 lambda function for the listener (and all other listeners), but
-        // they would be unfamiliar to many students who use this code.
-
-        TextView userName = findViewById(R.id.userName);
-        userName.setText(user.getName());
-
-        TextView userAlias = findViewById(R.id.userAlias);
-        userAlias.setText(user.getAlias());
-
-        ImageView userImageView = findViewById(R.id.userImage);
-        userImageView.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
-
-        TextView followeeCount = findViewById(R.id.followeeCount);
-        followeeCount.setText(getString(R.string.followeeCount, 42));
-
-        TextView followerCount = findViewById(R.id.followerCount);
-        followerCount.setText(getString(R.string.followerCount, 27));
+        corpName.setText(player.getTableau().getCorp().name);
     }
 
     @Override

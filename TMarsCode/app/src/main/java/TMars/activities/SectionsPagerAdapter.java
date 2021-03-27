@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import TMars.fragments.PlaceholderFragment;
+import TMars.fragments.TableauFragment;
+import TMars.model.Player;
 import edu.byu.cs.tweeter.R;
 
 /**
@@ -16,21 +19,23 @@ import edu.byu.cs.tweeter.R;
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int FOLLOWING_FRAGMENT_POSITION = 2;
+    private static final int TABLEAU_FRAGMENT_POSITION = 0;
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.feedTabTitle, R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
+    private static final int[] TAB_TITLES = new int[]{R.string.tableauTabTitle, R.string.tagTabTitle, R.string.cardTabTitle, R.string.actionTabTitle};
     private final Context mContext;
+    private final Player player;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, Player player) {
         super(fm);
         mContext = context;
+        this.player = player;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == FOLLOWING_FRAGMENT_POSITION) {
-            return FollowingFragment.newInstance(user, authToken);
+        if (position == TABLEAU_FRAGMENT_POSITION) {
+            return TableauFragment.newInstance(player);
         } else {
             return PlaceholderFragment.newInstance(position + 1);
         }

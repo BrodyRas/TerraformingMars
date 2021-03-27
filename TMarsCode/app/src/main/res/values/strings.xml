@@ -4,18 +4,36 @@
     <string name="logoutMenuTitle">Logout</string>
 
     <string name="homePageTitle">Home</string>
-    <string name="userImageContentDescription">The user\'s image</string>
+    <string name="resourceImageContentDescription">The resource image</string>
 
     <string name="title_activity_main">Tweeter</string>
     <string name="loadingData">Loading More Data…</string>
-    <string name="feedTabTitle">Feed</string>
-    <string name="storyTabTitle">Story</string>
-    <string name="followingTabTitle">Following</string>
-    <string name="followersTabTitle">Followers</string>
+    <string name="tableauTabTitle">Production</string>
+    <string name="tagTabTitle">Tags</string>
+    <string name="cardTabTitle">Hand</string>
+    <string name="actionTabTitle">Actions</string>
 
     <string name="sampleAlias">"@UserAlias"</string>
     <string name="sampleUserName">The User</string>
-    <string name="title_activity_open">Welcome</string>
+    <string name="title_activity_open">TMars Companion</string>
+    <string name="title_activity_setup">New Game</string>
+    <string name="title_activity_tableau">Terraforming</string>
     <string name="followeeCount">Following: %d</string>
     <string name="followerCount">Followers: %d</string>
+    <string name="userImageContentDescription">user</string>
+
+    <string-array name="corporations_array">
+        <item>Credicor</item>
+        <item>Ecoline</item>
+        <item>Helion</item>
+        <item>Mining Guild</item>
+        <item>Interplanetary Cinematics</item>
+        <item>Inventrix</item>
+        <item>Phobolog</item>
+        <item>Tharsis Republic</item>
+        <item>Thorgate</item>
+        <item>UN Mars Initiative</item>
+        <item>Teractor</item>
+        <item>Saturn Systems</item>
+    </string-array>
 </resources>

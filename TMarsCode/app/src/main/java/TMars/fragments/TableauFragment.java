@@ -1,9 +1,12 @@
 package TMars.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.legacy.widget.Space;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +31,7 @@ import java.util.List;
 import TMars.model.Player;
 import TMars.model.Row;
 import TMars.model.Tableau;
+import TMars.presenters.TableauPresenter;
 import edu.byu.cs.tweeter.R;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
@@ -46,10 +50,13 @@ public class TableauFragment extends Fragment {
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
-
-    private Player player;
+    private final TableauPresenter presenter;
 
     private TableauRecyclerViewAdapter tableauRecyclerViewAdapter;
+
+    private TableauFragment(TableauPresenter tableauPresenter) {
+        presenter = tableauPresenter;
+    }
 
     /**
      * Creates an instance of the fragment and places the user and auth token in an arguments
@@ -59,12 +66,7 @@ public class TableauFragment extends Fragment {
      * @return the fragment.
      */
     public static TableauFragment newInstance(Player player) {
-        TableauFragment fragment = new TableauFragment();
-
-        Bundle args = new Bundle(1);
-        args.putSerializable(PLAYER_KEY, player);
-
-        fragment.setArguments(args);
+        TableauFragment fragment = new TableauFragment(new TableauPresenter(player));
         return fragment;
     }
 
@@ -72,8 +74,6 @@ public class TableauFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scrollview, container, false);
-
-        player = (Player) getArguments().getSerializable(PLAYER_KEY);
 
         RecyclerView tableauRecyclerView = view.findViewById(R.id.scrollingRecyclerView);
 
@@ -102,6 +102,7 @@ public class TableauFragment extends Fragment {
         private final Button incProd;
         private final Button decProd;
         private final LinearLayout prodRow;
+        private final Space topSpace;
 
         /**
          * Creates an instance and sets an OnClickListener for the user's row.
@@ -120,34 +121,7 @@ public class TableauFragment extends Fragment {
                 incProd = itemView.findViewById(R.id.increase);
                 decProd = itemView.findViewById(R.id.decrease);
                 prodRow = itemView.findViewById(R.id.prod);
-
-                incQuant.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())+1));
-                    }
-                });
-
-                decQuant.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())-1));
-                    }
-                });
-
-                incProd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        production.setText(String.valueOf(Integer.decode(production.getText().toString())+1));
-                    }
-                });
-
-                decProd.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        production.setText(String.valueOf(Integer.decode(production.getText().toString())-1));
-                    }
-                });
+                topSpace = itemView.findViewById(R.id.topSpace);
 
             } else {
                 icon = null;
@@ -158,6 +132,7 @@ public class TableauFragment extends Fragment {
                 incProd = null;
                 decProd = null;
                 prodRow = null;
+                topSpace = null;
             }
         }
 
@@ -166,10 +141,46 @@ public class TableauFragment extends Fragment {
          *
          * @param row the row.
          */
+        @RequiresApi(api = Build.VERSION_CODES.M)
         void bindRow(Row row) {
             icon.setImageResource(row.iconID);
-            quantity.setBackgroundColor(row.colorID);
-            if (row.rownum == 0) prodRow.setVisibility(View.INVISIBLE);
+            quantity.setBackgroundColor(getResources().getColor(row.colorID,null));
+
+            incQuant.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())+1));
+                    quantity.setText(presenter.tapQ(row.tag,1));
+                }
+            });
+
+            decQuant.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())-1));
+                    quantity.setText(presenter.tapQ(row.tag,-1));
+                }
+            });
+
+            incProd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //production.setText(String.valueOf(Integer.decode(production.getText().toString())+1));
+                    production.setText(presenter.tapP(row.tag,1));
+                }
+            });
+
+            decProd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //production.setText(String.valueOf(Integer.decode(production.getText().toString())-1));
+                    production.setText(presenter.tapP(row.tag,-1));
+                }
+            });
+
+            if (row.rownum == 0) prodRow.setVisibility(View.GONE);
+            else topSpace.setVisibility(View.GONE);
+
             quantity.setText("0");
             production.setText("0");
         }
@@ -256,6 +267,7 @@ public class TableauFragment extends Fragment {
          * @param position the position (in the list of rows) that contains the row to be
          *                 bound.
          */
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onBindViewHolder(@NonNull TableauHolder tableauHolder, int position) {
             tableauHolder.bindRow(rows.get(position));

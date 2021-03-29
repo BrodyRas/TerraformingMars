@@ -18,6 +18,7 @@ public class TagProvider {
     }
 
     public enum ResourceTag {
+        Rating,
         Credits,
         Iron,
         Titanium,

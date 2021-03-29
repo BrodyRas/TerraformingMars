@@ -3,16 +3,17 @@ package TMars.model;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import TMars.providers.TagProvider;
+import TMars.providers.TagProvider.CardTag;
+import TMars.providers.TagProvider.ResourceTag;
 
 public class Tableau implements Serializable {
 
     private Corporation corp;
     private int terraformerRating;
-    private HashMap<TagProvider.ResourceTag, Integer> resources;
-    private HashMap<TagProvider.ResourceTag, Integer> production;
-    private HashMap<TagProvider.CardTag, Integer> myTags;
-    private HashMap<TagProvider.CardTag, Integer> theirTags;
+    private HashMap<ResourceTag, Integer> resources;
+    private HashMap<ResourceTag, Integer> production;
+    private HashMap<CardTag, Integer> myTags;
+    private HashMap<CardTag, Integer> theirTags;
 
     public Tableau(Corporation corp) {
         this.corp = corp;
@@ -23,7 +24,7 @@ public class Tableau implements Serializable {
         myTags = new HashMap<>();
         theirTags = new HashMap<>();
 
-        for (TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()) {
+        for (ResourceTag tag : ResourceTag.values()) {
             resources.put(tag, 0);
             production.put(tag, 0);
         }
@@ -33,30 +34,30 @@ public class Tableau implements Serializable {
     // Increase resources at the end of the generation, based on your production of that resource
     public void produceResources() {
         // TODO: should we convert Energy to Heat before or after production?
-        for (TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()) {
+        for (ResourceTag tag : ResourceTag.values()) {
             updateResource(tag, production.get(tag));
         }
         // Convert Energy to Heat, reset Energy
-        resources.put(TagProvider.ResourceTag.Heat,
-                resources.get(TagProvider.ResourceTag.Heat)
-                        + resources.get(TagProvider.ResourceTag.Energy));
-        resources.put(TagProvider.ResourceTag.Energy, 0);
+        resources.put(ResourceTag.Heat,
+                resources.get(ResourceTag.Heat)
+                        + resources.get(ResourceTag.Energy));
+        resources.put(ResourceTag.Energy, 0);
     }
 
     // For all update functions, "change" can be positive or negative
-    public void updateResource(TagProvider.ResourceTag tag, int change) {
+    public void updateResource(ResourceTag tag, int change) {
         resources.put(tag, resources.get(tag) + change);
     }
 
-    public void updateProduction(TagProvider.ResourceTag tag, int change) {
+    public void updateProduction(ResourceTag tag, int change) {
         production.put(tag, production.get(tag) + change);
     }
 
-    public void updateMyTags(TagProvider.CardTag tag, int change) {
+    public void updateMyTags(CardTag tag, int change) {
         myTags.put(tag, myTags.get(tag) + change);
     }
 
-    public void updateTheirTags(TagProvider.CardTag tag, int change) {
+    public void updateTheirTags(CardTag tag, int change) {
         theirTags.put(tag, theirTags.get(tag) + change);
     }
 
@@ -77,43 +78,43 @@ public class Tableau implements Serializable {
         this.terraformerRating = terraformerRating;
     }
 
-    public int getResource(TagProvider.ResourceTag tag) {
+    public int getResource(ResourceTag tag) {
         return resources.get(tag);
     }
 
-    public int getProduction(TagProvider.ResourceTag tag) {
+    public int getProduction(ResourceTag tag) {
         return production.get(tag);
     }
 
-    public HashMap<TagProvider.ResourceTag, Integer> getResources() {
+    public HashMap<ResourceTag, Integer> getResources() {
         return resources;
     }
 
-    public void setResources(HashMap<TagProvider.ResourceTag, Integer> resources) {
+    public void setResources(HashMap<ResourceTag, Integer> resources) {
         this.resources = resources;
     }
 
-    public HashMap<TagProvider.ResourceTag, Integer> getProduction() {
+    public HashMap<ResourceTag, Integer> getProduction() {
         return production;
     }
 
-    public void setProduction(HashMap<TagProvider.ResourceTag, Integer> production) {
+    public void setProduction(HashMap<ResourceTag, Integer> production) {
         this.production = production;
     }
 
-    public HashMap<TagProvider.CardTag, Integer> getMyTags() {
+    public HashMap<CardTag, Integer> getMyTags() {
         return myTags;
     }
 
-    public void setMyTags(HashMap<TagProvider.CardTag, Integer> myTags) {
+    public void setMyTags(HashMap<CardTag, Integer> myTags) {
         this.myTags = myTags;
     }
 
-    public HashMap<TagProvider.CardTag, Integer> getTheirTags() {
+    public HashMap<CardTag, Integer> getTheirTags() {
         return theirTags;
     }
 
-    public void setTheirTags(HashMap<TagProvider.CardTag, Integer> theirTags) {
+    public void setTheirTags(HashMap<CardTag, Integer> theirTags) {
         this.theirTags = theirTags;
     }
 }

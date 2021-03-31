@@ -1,0 +1,147 @@
+{
+  "corps": [
+    {
+      "name": "Credicor",
+      "startingResources": {
+        "mc": 57
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Ecoline",
+      "startingResources": {
+        "mc": 36,
+        "plant": 3
+      },
+      "startingProduction": {
+        "plant": 2
+      },
+      "effect": {}
+    },
+    {
+      "name": "Helion",
+      "startingResources": {
+        "mc": 42
+      },
+      "startingProduction": {
+        "heat": 3
+      },
+      "effect": {}
+    },
+    {
+      "name": "Mining Guild",
+      "startingResources": {
+        "mc": 30,
+        "steel": 5
+      },
+      "startingProduction": {
+        "steel": 1
+      },
+      "effect": {}
+    },
+    {
+      "name": "Interplanetary Cinematics",
+      "startingResources": {
+        "mc": 30,
+        "steel": 20
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Inventrix",
+      "startingResources": {
+        "mc": 45,
+        "card": 3
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Phobolog",
+      "startingResources": {
+        "mc": 23,
+        "titanium": 10
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Tharsis Republic",
+      "startingResources": {
+        "mc": 40,
+        "city": 1
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Thorgate",
+      "startingResources": {
+        "mc": 48
+      },
+      "startingProduction": {
+        "energy": 1
+      },
+      "effect": {}
+    },
+    {
+      "name": "United Nations Mars Initiative",
+      "startingResources": {
+        "mc": 40
+      },
+      "startingProduction": {},
+      "effect": {}
+    },
+    {
+      "name": "Teractor",
+      "startingResources": {
+        "mc": 60
+      },
+      "startingProduction": {
+      },
+      "effect": {}
+    },
+    {
+      "name": "Saturn Systems",
+      "startingResources": {
+        "mc": 42
+      },
+      "startingProduction": {
+        "titanium": 1
+      },
+      "effect": {}
+    },
+    {
+      "name": "Aphrodite",
+      "startingResources": {
+        "mc": 47
+      },
+      "startingProduction": {
+        "plant": 1
+      },
+      "effect": {}
+    },
+    {
+      "name": "Celestic",
+      "startingResources": {
+        "mc": 42
+      },
+      "startingProduction": {
+        "energy": 1
+      },
+      "effect": {}
+    },
+    {
+      "name": "Manutech",
+      "startingResources": {
+        "mc": 35
+      },
+      "startingProduction": {
+        "steel": 1
+      },
+      "effect": {}
+    }
+  ]
+}

@@ -8,7 +8,7 @@
 
     <string name="title_activity_main">Tweeter</string>
     <string name="loadingData">Loading More Data…</string>
-    <string name="tableauTabTitle">Production</string>
+    <string name="tableauTabTitle">Tableau</string>
     <string name="tagTabTitle">Tags</string>
     <string name="cardTabTitle">Hand</string>
     <string name="actionTabTitle">Actions</string>

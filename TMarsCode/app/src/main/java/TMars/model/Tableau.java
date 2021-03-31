@@ -28,6 +28,11 @@ public class Tableau implements Serializable {
             resources.put(tag, 0);
             production.put(tag, 0);
         }
+
+        for (CardTag tag : CardTag.values()) {
+            myTags.put(tag, 0);
+            theirTags.put(tag, 0);
+        }
     }
 
     // UTILITY

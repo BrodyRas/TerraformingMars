@@ -3,14 +3,14 @@ package TMars.model;
 import TMars.providers.TagProvider;
 import edu.byu.cs.tweeter.R;
 
-public class Row {
+public class TableauRow {
 
     public int rownum;
     public int iconID;
     public int colorID;
     public TagProvider.ResourceTag tag;
 
-    public Row(int id)
+    public TableauRow(int id)
     {
         rownum = id;
         switch(id)

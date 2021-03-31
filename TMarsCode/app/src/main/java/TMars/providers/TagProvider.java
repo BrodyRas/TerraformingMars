@@ -2,19 +2,18 @@ package TMars.providers;
 
 public class TagProvider {
     public enum CardTag {
-        Credits,
         Building,
         Space,
-        Science,
         Plant,
         Microbe,
         Animal,
         Power,
+        Science,
         Jovian,
         Earth,
         City,
         Event,
-        Wild,
+        Wild
     }
 
     public enum ResourceTag {

@@ -27,6 +27,11 @@ public class Tableau implements Serializable {
             resources.put(tag, 0);
             production.put(tag, 0);
         }
+
+        for (TagProvider.CardTag tag : TagProvider.CardTag.values()) {
+            myTags.put(tag, 0);
+            theirTags.put(tag, 0);
+        }
     }
 
     // UTILITY
@@ -117,5 +122,13 @@ public class Tableau implements Serializable {
 
     public void setTheirTags(HashMap<TagProvider.CardTag, Integer> theirTags) {
         this.theirTags = theirTags;
+    }
+
+    public int getMyTag(TagProvider.CardTag tag) {
+        return myTags.get(tag);
+    }
+
+    public int getOtherTag(TagProvider.CardTag tag) {
+        return theirTags.get(tag);
     }
 }

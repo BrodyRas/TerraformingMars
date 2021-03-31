@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.legacy.widget.Space;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,24 +23,25 @@ import java.util.List;
 
 import TMars.model.Player;
 import TMars.model.TableauRow;
+import TMars.model.TagRow;
 import TMars.presenters.TableauPresenter;
 import edu.byu.cs.tweeter.R;
 
 /**
  * The fragment that displays on the 'Following' tab.
  */
-public class TableauFragment extends Fragment {
+public class TagFragment extends Fragment {
 
-    private static final String LOG_TAG = "TableauFragment";
+    private static final String LOG_TAG = "TagFragment";
     private static final String PLAYER_KEY = "PlayerKey";
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
     private final TableauPresenter presenter;
 
-    private TableauRecyclerViewAdapter tableauRecyclerViewAdapter;
+    private TagRecyclerViewAdapter tagRecyclerViewAdapter;
 
-    private TableauFragment(TableauPresenter tableauPresenter) {
+    private TagFragment(TableauPresenter tableauPresenter) {
         presenter = tableauPresenter;
     }
 
@@ -53,8 +52,8 @@ public class TableauFragment extends Fragment {
      * @param player the current player.
      * @return the fragment.
      */
-    public static TableauFragment newInstance(Player player) {
-        TableauFragment fragment = new TableauFragment(new TableauPresenter(player));
+    public static TagFragment newInstance(Player player) {
+        TagFragment fragment = new TagFragment(new TableauPresenter(player));
         return fragment;
     }
 
@@ -63,15 +62,15 @@ public class TableauFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scrollview, container, false);
 
-        RecyclerView tableauRecyclerView = view.findViewById(R.id.scrollingRecyclerView);
+        RecyclerView tagRecyclerView = view.findViewById(R.id.scrollingRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        tableauRecyclerView.setLayoutManager(layoutManager);
+        tagRecyclerView.setLayoutManager(layoutManager);
 
-        tableauRecyclerViewAdapter = new TableauRecyclerViewAdapter();
-        tableauRecyclerView.setAdapter(tableauRecyclerViewAdapter);
+        tagRecyclerViewAdapter = new TagRecyclerViewAdapter();
+        tagRecyclerView.setAdapter(tagRecyclerViewAdapter);
 
-        tableauRecyclerView.addOnScrollListener(new TableauRecyclerViewPaginationScrollListener(layoutManager));
+        tagRecyclerView.addOnScrollListener(new TagRecyclerViewPaginationScrollListener(layoutManager));
 
         return view;
     }
@@ -80,47 +79,41 @@ public class TableauFragment extends Fragment {
     /**
      * The ViewHolder for the RecyclerView that displays the Following data.
      */
-    private class TableauHolder extends RecyclerView.ViewHolder {
+    private class TagHolder extends RecyclerView.ViewHolder {
 
         private final ImageView icon;
         private final TextView quantity;
         private final TextView production;
-        private final Button incQuant;
-        private final Button decQuant;
-        private final Button incProd;
-        private final Button decProd;
-        private final LinearLayout prodRow;
-        private final Space topSpace;
+        private final Button incMe;
+        private final Button decMe;
+        private final Button incO;
+        private final Button decO;
 
         /**
          * Creates an instance and sets an OnClickListener for the user's row.
          *
          * @param itemView the view on which the user will be displayed.
          */
-        TableauHolder(@NonNull View itemView, int viewType) {
+        TagHolder(@NonNull View itemView, int viewType) {
             super(itemView);
 
             if(viewType == ITEM_VIEW) {
-                icon = itemView.findViewById(R.id.resourceImage);
+                icon = itemView.findViewById(R.id.tagImage);
                 quantity = itemView.findViewById(R.id.quantity);
                 production = itemView.findViewById(R.id.production);
-                incQuant = itemView.findViewById(R.id.get);
-                decQuant = itemView.findViewById(R.id.use);
-                incProd = itemView.findViewById(R.id.increase);
-                decProd = itemView.findViewById(R.id.decrease);
-                prodRow = itemView.findViewById(R.id.prod);
-                topSpace = itemView.findViewById(R.id.topSpace);
+                incMe = itemView.findViewById(R.id.get);
+                decMe = itemView.findViewById(R.id.use);
+                incO = itemView.findViewById(R.id.increase);
+                decO = itemView.findViewById(R.id.decrease);
 
             } else {
                 icon = null;
                 quantity = null;
                 production = null;
-                incQuant = null;
-                decQuant = null;
-                incProd = null;
-                decProd = null;
-                prodRow = null;
-                topSpace = null;
+                incMe = null;
+                decMe = null;
+                incO = null;
+                decO = null;
             }
         }
 
@@ -130,44 +123,40 @@ public class TableauFragment extends Fragment {
          * @param row the row.
          */
         @RequiresApi(api = Build.VERSION_CODES.M)
-        void bindRow(TableauRow row) {
+        void bindRow(TagRow row) {
             icon.setImageResource(row.iconID);
-            quantity.setBackgroundColor(getResources().getColor(row.colorID,null));
 
-            incQuant.setOnClickListener(new View.OnClickListener() {
+            incMe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())+1));
-                    quantity.setText(presenter.tapQ(row.tag,1));
+                    quantity.setText(presenter.tapMe(row.tag,1));
                 }
             });
 
-            decQuant.setOnClickListener(new View.OnClickListener() {
+            decMe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())-1));
-                    quantity.setText(presenter.tapQ(row.tag,-1));
+                    quantity.setText(presenter.tapMe(row.tag,-1));
                 }
             });
 
-            incProd.setOnClickListener(new View.OnClickListener() {
+            incO.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //production.setText(String.valueOf(Integer.decode(production.getText().toString())+1));
-                    production.setText(presenter.tapP(row.tag,1));
+                    production.setText(presenter.tapO(row.tag,1));
                 }
             });
 
-            decProd.setOnClickListener(new View.OnClickListener() {
+            decO.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //production.setText(String.valueOf(Integer.decode(production.getText().toString())-1));
-                    production.setText(presenter.tapP(row.tag,-1));
+                    production.setText(presenter.tapO(row.tag,-1));
                 }
             });
-
-            if (row.rownum == 0) prodRow.setVisibility(View.GONE);
-            else topSpace.setVisibility(View.GONE);
 
             quantity.setText("0");
             production.setText("0");
@@ -177,14 +166,14 @@ public class TableauFragment extends Fragment {
     /**
      * The adapter for the RecyclerView that displays the Following data.
      */
-    private class TableauRecyclerViewAdapter extends RecyclerView.Adapter<TableauHolder> {
+    private class TagRecyclerViewAdapter extends RecyclerView.Adapter<TagHolder> {
 
-        private final List<TableauRow> rows = new ArrayList<>();
+        private final List<TagRow> rows = new ArrayList<>();
 
         /**
          * Creates an instance and loads the first page of following data.
          */
-        TableauRecyclerViewAdapter() {
+        TagRecyclerViewAdapter() {
             loadItems();
         }
 
@@ -194,7 +183,7 @@ public class TableauFragment extends Fragment {
          *
          * @param newRows the rows to add.
          */
-        void addItems(List<TableauRow> newRows) {
+        void addItems(List<TagRow> newRows) {
             int startInsertPosition = rows.size();
             rows.addAll(newRows);
             this.notifyItemRangeInserted(startInsertPosition, newRows.size());
@@ -206,7 +195,7 @@ public class TableauFragment extends Fragment {
          *
          * @param row the row to add.
          */
-        void addItem(TableauRow row) {
+        void addItem(TagRow row) {
             rows.add(row);
             this.notifyItemInserted(rows.size() - 1);
         }
@@ -217,7 +206,7 @@ public class TableauFragment extends Fragment {
          *
          * @param row the row to remove.
          */
-        void removeItem(TableauRow row) {
+        void removeItem(TagRow row) {
             int position = rows.indexOf(row);
             rows.remove(position);
             this.notifyItemRemoved(position);
@@ -233,32 +222,32 @@ public class TableauFragment extends Fragment {
          */
         @NonNull
         @Override
-        public TableauHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(TableauFragment.this.getContext());
+        public TagHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(TagFragment.this.getContext());
             View view;
 
             if(viewType == LOADING_DATA_VIEW) {
                 view =layoutInflater.inflate(R.layout.loading_row, parent, false);
 
             } else {
-                view = layoutInflater.inflate(R.layout.tableau_row, parent, false);
+                view = layoutInflater.inflate(R.layout.tag_row, parent, false);
             }
 
-            return new TableauHolder(view, viewType);
+            return new TagHolder(view, viewType);
         }
 
         /**
          * Binds the row at the specified position unless we are currently loading new data. If
          * we are loading new data, the display at that position will be the data loading footer.
          *
-         * @param tableauHolder the ViewHolder to which the row should be bound.
+         * @param tagHolder the ViewHolder to which the row should be bound.
          * @param position the position (in the list of rows) that contains the row to be
          *                 bound.
          */
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
-        public void onBindViewHolder(@NonNull TableauHolder tableauHolder, int position) {
-            tableauHolder.bindRow(rows.get(position));
+        public void onBindViewHolder(@NonNull TagHolder tagHolder, int position) {
+            tagHolder.bindRow(rows.get(position));
         }
 
         /**
@@ -287,10 +276,10 @@ public class TableauFragment extends Fragment {
          * data.
          */
         void loadItems() {
-            List<TableauRow> newRows = new ArrayList<>();
-            for(int i = 0; i < 7; ++i)
+            List<TagRow> newRows = new ArrayList<>();
+            for(int i = 0; i < 12; ++i)
             {
-                newRows.add(new TableauRow(i));
+                newRows.add(new TagRow(i));
             }
             addItems(newRows);
         }
@@ -300,7 +289,7 @@ public class TableauFragment extends Fragment {
      * A scroll listener that detects when the user has scrolled to the bottom of the currently
      * available data.
      */
-    private class TableauRecyclerViewPaginationScrollListener extends RecyclerView.OnScrollListener {
+    private class TagRecyclerViewPaginationScrollListener extends RecyclerView.OnScrollListener {
 
         private final LinearLayoutManager layoutManager;
 
@@ -309,7 +298,7 @@ public class TableauFragment extends Fragment {
          *
          * @param layoutManager the layout manager being used by the RecyclerView.
          */
-        TableauRecyclerViewPaginationScrollListener(LinearLayoutManager layoutManager) {
+        TagRecyclerViewPaginationScrollListener(LinearLayoutManager layoutManager) {
             this.layoutManager = layoutManager;
         }
 

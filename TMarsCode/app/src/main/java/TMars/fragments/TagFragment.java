@@ -157,7 +157,7 @@ public class TagFragment extends Fragment {
                     production.setText(presenter.tapO(row.tag,-1));
                 }
             });
-
+            //TODO: Set with current value. Fix tags to be circles
             quantity.setText("0");
             production.setText("0");
         }

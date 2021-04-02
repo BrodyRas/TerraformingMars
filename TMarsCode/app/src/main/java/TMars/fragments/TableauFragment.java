@@ -169,8 +169,8 @@ public class TableauFragment extends Fragment {
             if (row.rownum == 0) prodRow.setVisibility(View.GONE);
             else topSpace.setVisibility(View.GONE);
 
-            quantity.setText("0");
-            production.setText("0");
+            quantity.setText(presenter.tapQ(row.tag, 0));
+            production.setText(presenter.tapP(row.tag, 0));
         }
     }
 

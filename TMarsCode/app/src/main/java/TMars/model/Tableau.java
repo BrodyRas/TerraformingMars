@@ -3,13 +3,13 @@ package TMars.model;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import TMars.providers.TagProvider;
 import TMars.providers.TagProvider.CardTag;
 import TMars.providers.TagProvider.ResourceTag;
 
 public class Tableau implements Serializable {
 
     private Corporation corp;
-    private int terraformerRating;
     private HashMap<ResourceTag, Integer> resources;
     private HashMap<ResourceTag, Integer> production;
     private HashMap<CardTag, Integer> myTags;
@@ -17,7 +17,8 @@ public class Tableau implements Serializable {
 
     public Tableau(Corporation corp) {
         this.corp = corp;
-        terraformerRating = 20; // because that's the default start
+        //we made rating a resource so it doesn't need it's own member
+        //terraformerRating = 20; // because that's the default start
 
         resources = new HashMap<>();
         production = new HashMap<>();
@@ -28,6 +29,8 @@ public class Tableau implements Serializable {
             resources.put(tag, 0);
             production.put(tag, 0);
         }
+
+        resources.put(ResourceTag.Rating, 20);
 
         for (CardTag tag : CardTag.values()) {
             myTags.put(tag, 0);
@@ -75,14 +78,6 @@ public class Tableau implements Serializable {
         this.corp = corp;
     }
 
-    public int getTerraformerRating() {
-        return terraformerRating;
-    }
-
-    public void setTerraformerRating(int terraformerRating) {
-        this.terraformerRating = terraformerRating;
-    }
-
     public int getResource(ResourceTag tag) {
         return resources.get(tag);
     }
@@ -105,6 +100,14 @@ public class Tableau implements Serializable {
 
     public void setProduction(HashMap<ResourceTag, Integer> production) {
         this.production = production;
+    }
+
+    public int getMyTag(CardTag tag) {
+        return myTags.get(tag);
+    }
+
+    public int getOtherTag(CardTag tag) {
+        return theirTags.get(tag);
     }
 
     public HashMap<CardTag, Integer> getMyTags() {

@@ -5,13 +5,18 @@ package TMars.model;
  */
 public class Player implements java.io.Serializable {
     private static Player instance;
+    //tell if a player needs init called or not
+    private static boolean instantiated;
 
-    private Player(){ }
+    private Player(Corporation corp){ tableau = new Tableau(corp); }
 
-    public static Player getInstance(){
+    public static Player getInstance(Corporation corp){
         if(instance == null){
-            instance = new Player();
+            instance = new Player(corp);
+            instantiated = false;
+            return instance;
         }
+        instantiated = true;
         return instance;
     }
 

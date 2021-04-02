@@ -9,15 +9,18 @@
       "effect": {}
     },
     {
-      "name": "Ecoline",
-      "startingResources": {
-        "mc": 36,
-        "plant": 3
+      "name":"ecoline",
+      "cost":0,
+      "resources":{
+        "Plant":3,
+        "Credits":36
       },
-      "startingProduction": {
-        "plant": 2
+      "production":{
+        "Plant":2
       },
-      "effect": {}
+      "tags": {
+        "Plant":1
+      }
     },
     {
       "name": "Helion",

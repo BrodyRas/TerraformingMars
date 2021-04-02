@@ -32,7 +32,7 @@ public class TableauActivity extends AppCompatActivity {
         Player player = (Player) getIntent().getSerializableExtra(CURRENT_PLAYER_KEY);
         if(player == null) {
             int corpID = (int) getIntent().getSerializableExtra(CURRENT_CORP_KEY);
-            player = new Player(new Corporation(corpID));
+            player = Player.getInstance(new Corporation(corpID));
         }
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), player);
@@ -43,7 +43,7 @@ public class TableauActivity extends AppCompatActivity {
 
         TextView corpName = findViewById(R.id.corp_name);
 
-        corpName.setText(player.getTableau().getCorp().name);
+        corpName.setText(player.getTableau().getCorp().getName());
     }
 
     @Override

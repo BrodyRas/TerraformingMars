@@ -1,6 +1,9 @@
 package TMars.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import TMars.providers.TagProvider;
 
 
 /**
@@ -10,11 +13,11 @@ public abstract class Card {
     private String id;
     private String name;
     private int cost;
-    private ArrayList<Integer> tags;
     private Requirement requires;
     private Score points;
-    private ArrayList<Integer> adjustProduction;
-    private ArrayList<Integer> adjustResources;
+    private HashMap<TagProvider.ResourceTag, Integer> resources;
+    private HashMap<TagProvider.ResourceTag, Integer> production;
+    private HashMap<TagProvider.CardTag, Integer> tags;
 
     public Card(){};
 
@@ -38,14 +41,6 @@ public abstract class Card {
         this.cost = cost;
     }
 
-    public ArrayList<Integer> getTags() {
-        return tags;
-    }
-
-    public void setTags(ArrayList<Integer> tags) {
-        this.tags = tags;
-    }
-
     public Requirement getRequires() {
         return requires;
     }
@@ -62,19 +57,35 @@ public abstract class Card {
         this.points = points;
     }
 
-    public ArrayList<Integer> getAdjustProduction() {
-        return adjustProduction;
+    public String getName() {
+        return name;
     }
 
-    public void setAdjustProduction(ArrayList<Integer> adjustProduction) {
-        this.adjustProduction = adjustProduction;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public ArrayList<Integer> getAdjustResources() {
-        return adjustResources;
+    public HashMap<TagProvider.ResourceTag, Integer> getResources() {
+        return resources;
     }
 
-    public void setAdjustResources(ArrayList<Integer> adjustResources) {
-        this.adjustResources = adjustResources;
+    public void setResources(HashMap<TagProvider.ResourceTag, Integer> resources) {
+        this.resources = resources;
+    }
+
+    public HashMap<TagProvider.ResourceTag, Integer> getProduction() {
+        return production;
+    }
+
+    public void setProduction(HashMap<TagProvider.ResourceTag, Integer> production) {
+        this.production = production;
+    }
+
+    public HashMap<TagProvider.CardTag, Integer> getTags() {
+        return tags;
+    }
+
+    public void setTags(HashMap<TagProvider.CardTag, Integer> tags) {
+        this.tags = tags;
     }
 }

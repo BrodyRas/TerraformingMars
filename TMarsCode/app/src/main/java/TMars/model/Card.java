@@ -19,7 +19,7 @@ public abstract class Card {
     private HashMap<TagProvider.ResourceTag, Integer> production;
     private HashMap<TagProvider.CardTag, Integer> tags;
 
-    public Card(){};
+    public Card() { };
 
     public abstract boolean play();
 

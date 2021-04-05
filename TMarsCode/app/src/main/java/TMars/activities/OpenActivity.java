@@ -3,12 +3,17 @@ package TMars.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import TMars.model.GlobalAssets;
 import edu.byu.cs.tweeter.R;
 
 /**
@@ -39,6 +44,8 @@ public class OpenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        GlobalAssets ga = GlobalAssets.getInstance(this);
     }
 }
 

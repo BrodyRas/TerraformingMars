@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import TMars.model.Corporation;
+import TMars.model.GlobalAssets;
 import TMars.model.Player;
 import edu.byu.cs.tweeter.R;
-import edu.byu.cs.tweeter.view.util.ImageUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,16 +23,16 @@ public class TableauActivity extends AppCompatActivity {
 
     public static final String CURRENT_PLAYER_KEY = "CurrentUser";
     public static final String CURRENT_CORP_KEY = "CurrentCorp";
+    private GlobalAssets ga = GlobalAssets.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tableau);
-
         Player player = (Player) getIntent().getSerializableExtra(CURRENT_PLAYER_KEY);
         if(player == null) {
             int corpID = (int) getIntent().getSerializableExtra(CURRENT_CORP_KEY);
-            player = Player.getInstance(new Corporation(corpID));
+            player = Player.getInstance(ga.getCorporation(corpID));
         }
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), player);

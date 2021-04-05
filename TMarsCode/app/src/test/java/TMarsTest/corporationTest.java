@@ -1,5 +1,7 @@
 package TMarsTest;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import TMars.model.Corporation;
@@ -52,5 +57,6 @@ public class corporationTest {
         String out = serialize(corp);
         Corporation result = deserialize(out, Corporation.class);
         Assertions.assertEquals(corp.getName(), result.getName());
+        Assertions.assertEquals(0,result.getProduction().get(TagProvider.ResourceTag.Energy));
     }
 }

@@ -158,8 +158,8 @@ public class TagFragment extends Fragment {
                 }
             });
             //TODO: Set with current value. Fix tags to be circles
-            quantity.setText("0");
-            production.setText("0");
+            quantity.setText(presenter.tapMe(row.tag, 0));
+            production.setText(presenter.tapO(row.tag, 0));
         }
     }
 

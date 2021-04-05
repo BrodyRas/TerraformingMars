@@ -20,22 +20,29 @@ public class Tableau implements Serializable {
         //we made rating a resource so it doesn't need it's own member
         //terraformerRating = 20; // because that's the default start
 
-        resources = new HashMap<>();
+        /**resources = new HashMap<>();
         production = new HashMap<>();
-        myTags = new HashMap<>();
+        myTags = new HashMap<>();*/
+        resources = corp.getResources();
+        production = corp.getProduction();
+        myTags = corp.getTags();
+
         theirTags = new HashMap<>();
 
         for (ResourceTag tag : ResourceTag.values()) {
-            resources.put(tag, 0);
-            production.put(tag, 0);
+            if (resources.get(tag) == null) resources.put(tag, 0);
+            if (production.get(tag) == null) production.put(tag, 0);
         }
 
         resources.put(ResourceTag.Rating, 20);
 
         for (CardTag tag : CardTag.values()) {
-            myTags.put(tag, 0);
+            if (myTags.get(tag) == null) myTags.put(tag, 0);
             theirTags.put(tag, 0);
         }
+
+        // Then add the corporation values
+
     }
 
     // UTILITY

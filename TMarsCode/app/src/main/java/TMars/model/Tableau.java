@@ -49,10 +49,14 @@ public class Tableau implements Serializable {
     // Increase resources at the end of the generation, based on your production of that resource
     public void produceResources() {
         // TODO: should we convert Energy to Heat before or after production?
-        resources.put(ResourceTag.Heat,
+        /**resources.put(ResourceTag.Heat,
                 resources.get(ResourceTag.Heat)
-                        + resources.get(ResourceTag.Energy));
+                        + resources.get(ResourceTag.Energy));*/
+        updateResource(ResourceTag.Heat, resources.get(ResourceTag.Energy));
+
         resources.put(ResourceTag.Energy, 0);
+
+        updateResource(ResourceTag.Credits, resources.get(ResourceTag.Rating));
 
         for (ResourceTag tag : ResourceTag.values()) {
             updateResource(tag, production.get(tag));

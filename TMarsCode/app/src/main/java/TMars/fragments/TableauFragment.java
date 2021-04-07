@@ -76,6 +76,11 @@ public class TableauFragment extends Fragment {
         return view;
     }
 
+    public void refresh()
+    {
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
 
     /**
      * The ViewHolder for the RecyclerView that displays the Following data.

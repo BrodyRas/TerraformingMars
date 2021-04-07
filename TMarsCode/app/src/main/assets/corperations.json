@@ -4,6 +4,10 @@
       "cost": 0,
       "resources": {
         "Credits": 57
+      },
+      "production":{
+      },
+      "tags": {
       }
     },
     {
@@ -54,6 +58,8 @@
         "Iron":20,
         "Credits":30
       },
+      "production":{
+      },
       "tags": {
         "Building":1
       }
@@ -63,6 +69,8 @@
       "cost":0,
       "resources":{
         "Credits":45
+      },
+      "production":{
       },
       "tags": {
         "Science":1
@@ -75,6 +83,8 @@
         "Titanium":10,
         "Credits":23
       },
+      "production":{
+      },
       "tags": {
         "Space":1
       }
@@ -84,6 +94,8 @@
       "cost":0,
       "resources":{
         "Credits":40
+      },
+      "production":{
       },
       "tags": {
         "Building":1
@@ -108,6 +120,8 @@
       "resources":{
         "Credits":40
       },
+      "production":{
+      },
       "tags": {
         "Earth":1
       }
@@ -117,6 +131,8 @@
       "cost":0,
       "resources":{
         "Credits":60
+      },
+      "production":{
       },
       "tags": {
         "Earth":1

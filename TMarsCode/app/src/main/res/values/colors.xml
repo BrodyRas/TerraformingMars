@@ -11,6 +11,7 @@
     <color name="titan">#5d5d5d</color>
     <color name="plant">#377d47</color>
     <color name="power">#9d4497</color>
-    <color name="heat">#ffffff</color>
+    <color name="heat">#d3494e</color>
     <color name="grey">#888888</color>
+    <color name="trans">#80000000</color>
 </resources>

@@ -62,6 +62,10 @@ public class TagRow {
                 iconID = R.drawable.tag_wild;
                 tag = TagProvider.CardTag.Wild;
                 break;
+            default:
+                iconID = -1;
+                tag = null;
+
         }
     }
 }

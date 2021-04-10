@@ -128,43 +128,65 @@ public class TagFragment extends Fragment {
          * @param row the row.
          */
         @RequiresApi(api = Build.VERSION_CODES.M)
-        void bindRow(TagRow row) {
-            icon.setImageResource(row.iconID);
+        void bindRow(TagRow row)
+        {
+            if (row.rownum >= 0)
+            {
+                icon.setImageResource(row.iconID);
 
-            incMe.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())+1));
-                    quantity.setText(presenter.tapMe(row.tag,1));
-                }
-            });
+                incMe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())+1));
+                        quantity.setText(presenter.tapMe(row.tag, 1));
+                    }
+                });
 
-            decMe.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())-1));
-                    quantity.setText(presenter.tapMe(row.tag,-1));
-                }
-            });
+                decMe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //quantity.setText(String.valueOf(Integer.decode(quantity.getText().toString())-1));
+                        quantity.setText(presenter.tapMe(row.tag, -1));
+                    }
+                });
 
-            incO.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //production.setText(String.valueOf(Integer.decode(production.getText().toString())+1));
-                    production.setText(presenter.tapO(row.tag,1));
-                }
-            });
+                incO.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //production.setText(String.valueOf(Integer.decode(production.getText().toString())+1));
+                        production.setText(presenter.tapO(row.tag, 1));
+                    }
+                });
 
-            decO.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //production.setText(String.valueOf(Integer.decode(production.getText().toString())-1));
-                    production.setText(presenter.tapO(row.tag,-1));
-                }
-            });
-            //TODO: Set with current value. Fix tags to be circles
-            quantity.setText(presenter.tapMe(row.tag, 0));
-            production.setText(presenter.tapO(row.tag, 0));
+                decO.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //production.setText(String.valueOf(Integer.decode(production.getText().toString())-1));
+                        production.setText(presenter.tapO(row.tag, -1));
+                    }
+                });
+                //TODO: Set with current value. Fix tags to be circles
+                quantity.setText(presenter.tapMe(row.tag, 0));
+                production.setText(presenter.tapO(row.tag, 0));
+            }
+            else
+            {
+                icon.setVisibility(View.INVISIBLE);
+                incMe.setVisibility(View.GONE);
+                decMe.setVisibility(View.GONE);
+                incO.setVisibility(View.GONE);
+                decO.setVisibility(View.GONE);
+                quantity.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                quantity.setText("Yours");
+                quantity.setTextSize(20);
+                ViewGroup.LayoutParams lp = quantity.getLayoutParams();
+                lp.width = (250);
+                quantity.setLayoutParams(lp);
+                production.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                production.setText("Theirs");
+                production.setTextSize(20);
+                production.setLayoutParams(lp);
+            }
         }
     }
 
@@ -282,7 +304,7 @@ public class TagFragment extends Fragment {
          */
         void loadItems() {
             List<TagRow> newRows = new ArrayList<>();
-            for(int i = 0; i < 12; ++i)
+            for(int i = -1; i < 12; ++i)
             {
                 newRows.add(new TagRow(i));
             }

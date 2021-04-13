@@ -32,48 +32,39 @@
         - Claim a milestone\n
         - Fund an award
     </string>
-    <string name="tile_text">
-        Ocean:\n
-        \t\t\tPlace only on the reserved areas.\n
-        \t\t\tReceive 1 Terraformer Rating.\n
-        Greenery:\n
-        \t\t\tPlace adjacent to a tile you own, if possible.\n
-        \t\t\t\t\t\tYou do not own ocean tiles.\n
-        \t\t\tIncrease oxygen 1 step.\n
-        \t\t\t\t\t\tGain 1 TR if oxygen was raised.\n
-        \t\t\t\t\t\tDo not gain any TR if oxygen was already at max.\n
-        City:\n
-        \t\t\tMay not be placed next to another city tile.\n
-        \t\t\tWorth 1 VP for every adjacent greenery at the end of the game.\n
-        Special:\n
-        \t\t\tFollow card instructions.
+    <string name="ocean_text">
+        Place only on the reserved areas.\nReceive 1 Terraformer Rating.
     </string>
+    <string name="greenery_text">
+        Place adjacent to a tile you own, if possible.\nYou do not own ocean tiles.\nIncrease oxygen 1 step.\nGain 1 TR if oxygen was raised.\nDo not gain any TR if oxygen was already at max.
+    </string>
+    <string name="city_text">
+        May not be placed next to another city tile.\nWorth 1 VP for every adjacent greenery at the end of the game.
+    </string>
+    <string name="special_text">Follow card instructions.</string>
     <string name="general_text">
-        Increasing Oxygen, Temperature, and Ocean, also increases your TR.\n
-        All cards have symbols that explain their function, and explanatory parenthetical text.\n
-        If a card has an asterisk (*) it follows special rules listed on the card.\n
-        A red border on a resource indicates that you may target any 1 player, including yourself.\n
-        Production is marked by a resource icon in a brown box.
+        Increasing Oxygen, Temperature, and Ocean, also increases your TR.\nAll cards have symbols that explain their function, and explanatory parenthetical text.\nIf a card has an asterisk (*) it follows special rules listed on the card.\nA red border on a resource indicates that you may target any 1 player, including yourself.\nProduction is marked by a resource icon in a brown box.
     </string>
     <string name="end_text">
-        When Oxygen level is 14%, the temperature is at +8, and there are 9 ocean tiles in play, the game ends when the current generation has concluded.\n
+        When Oxygen level is 14%, the temperature is at +8, and there are 9 ocean tiles in play, the game ends when the current generation has concluded.
+    </string>
+    <string name="end_text_2">
         After the production phase is completed, players get an extra chance to, in turn order, spend plants to place greenery tiles, following the normal rules.
     </string>
-    <string name="score_text">
-        Your final score is the sum of the following:\n
-        <u>Terraformer Rating:</u>\n
-            Your TR as indicated by the TR track.\n
-        <u>Awards:</u>\n
-            Each funded award gives 5 VP to the winner of the category, and 2 VP to second place if there are at least 3 players.\n
-            In a tie for first, both players score 5 VP, and no second place is awarded.\n
-            In a tie for second, both players score 2 VP.\n
-        <u>Milestones:</u>\n
-            Score 5 VP for each milestone you claimed.\n
-        <u>Map:</u>\n
-            Score 1 VP for every greenery tile you own.\n
-            Score 1 VP per adjacent greenery per city you own.\n
-        <u>Cards:</u>\n
-            Count up the VPs listed on all the cards you have played.
+    <string name="tr_text">
+        Your TR as indicated by the TR track.
+    </string>
+    <string name="awards_text">
+        Each funded award gives 5 VP to the winner of the category, and 2 VP to second place if there are at least 3 players.\nIn a tie for first, both players score 5 VP, and no second place is awarded.\nIn a tie for second, both players score 2 VP.
+    </string>
+    <string name="milestones_text">
+        Score 5 VP for each milestone you claimed.
+    </string>
+    <string name="map_text">
+        Score 1 VP for every greenery tile you own.\nScore 1 VP per adjacent greenery per city you own.
+    </string>
+    <string name="card_text">
+        Count up the VPs listed on all the cards you have played.
     </string>
 
     <string-array name="corporations_array">

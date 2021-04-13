@@ -66,10 +66,16 @@ public class Tableau implements Serializable {
     // For all update functions, "change" can be positive or negative
     public void updateResource(ResourceTag tag, int change) {
         resources.put(tag, resources.get(tag) + change);
+        if(resources.get(tag) < 0){
+            resources.put(tag, 0);
+        }
     }
 
     public void updateProduction(ResourceTag tag, int change) {
         productions.put(tag, productions.get(tag) + change);
+        if(productions.get(tag) < 0 && tag != ResourceTag.Credits){
+            productions.put(tag, 0);
+        }
     }
 
     public void updateMyTags(CardTag tag, int change) {

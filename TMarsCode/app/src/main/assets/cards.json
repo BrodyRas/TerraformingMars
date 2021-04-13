@@ -1,24 +1,24 @@
 [
   {
     "name": "Colonizer Training Camp",
-    "id": 1,
-    "tags": [
-      "jovian",
-      "building"
-    ],
+    "id": "001",
+    "tags": {
+      "jovian": 1,
+      "building": 1
+    },
     "cost": 8,
     "resources": {
       "rating": 2
     },
-    "production": [],
-    "effects": []
+    "production": {},
+    "effects": {}
   },
   {
     "name": "Asteroid Mining Consortium",
-    "id": 2,
-    "tags": [
-      "jovian"
-    ],
+    "id": "002",
+    "tags": {
+      "jovian": 1
+    },
     "cost": 13,
     "resources": {
       "rating": 1
@@ -26,17 +26,17 @@
     "production": {
       "titanium": 1
     },
-    "effects": [
-      "reduce one other titanium production by 1"
-    ]
+    "effects": {
+
+    }
   },
   {
     "name": "Deep Well Heating",
-    "id": 1,
-    "tags": [
-      "energy",
-      "building"
-    ],
+    "id": "003",
+    "tags": {
+      "energy": 1,
+      "building": 1
+    },
     "cost": 13,
     "resources": {
       "energy": 1
@@ -44,6 +44,6 @@
     "production": {
       "energy": 1
     },
-    "effects": []
+    "effects": {}
   }
 ]

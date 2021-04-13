@@ -3,7 +3,6 @@ package TMars.model;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import TMars.providers.TagProvider;
 import TMars.providers.TagProvider.CardTag;
 import TMars.providers.TagProvider.ResourceTag;
 
@@ -11,7 +10,7 @@ public class Tableau implements Serializable {
 
     private Corporation corp;
     private HashMap<ResourceTag, Integer> resources;
-    private HashMap<ResourceTag, Integer> production;
+    private HashMap<ResourceTag, Integer> productions;
     private HashMap<CardTag, Integer> myTags;
     private HashMap<CardTag, Integer> theirTags;
 
@@ -24,14 +23,14 @@ public class Tableau implements Serializable {
         production = new HashMap<>();
         myTags = new HashMap<>();*/
         resources = corp.getResources();
-        production = corp.getProduction();
+        productions = corp.getProduction();
         myTags = corp.getTags();
 
         theirTags = new HashMap<>();
 
         for (ResourceTag tag : ResourceTag.values()) {
             if (resources.get(tag) == null) resources.put(tag, 0);
-            if (production.get(tag) == null) production.put(tag, 0);
+            if (productions.get(tag) == null) productions.put(tag, 0);
         }
 
         resources.put(ResourceTag.Rating, 20);
@@ -59,7 +58,7 @@ public class Tableau implements Serializable {
         updateResource(ResourceTag.Credits, resources.get(ResourceTag.Rating));
 
         for (ResourceTag tag : ResourceTag.values()) {
-            updateResource(tag, production.get(tag));
+            updateResource(tag, productions.get(tag));
         }
 
     }
@@ -70,7 +69,7 @@ public class Tableau implements Serializable {
     }
 
     public void updateProduction(ResourceTag tag, int change) {
-        production.put(tag, production.get(tag) + change);
+        productions.put(tag, productions.get(tag) + change);
     }
 
     public void updateMyTags(CardTag tag, int change) {
@@ -94,8 +93,14 @@ public class Tableau implements Serializable {
         return resources.get(tag);
     }
 
+    public int setResource(ResourceTag tag, int amount) { return resources.put(tag, amount); }
+
     public int getProduction(ResourceTag tag) {
-        return production.get(tag);
+        return productions.get(tag);
+    }
+
+    public int setProduction(ResourceTag tag, int amount) {
+        return productions.put(tag, amount);
     }
 
     public HashMap<ResourceTag, Integer> getResources() {
@@ -106,12 +111,12 @@ public class Tableau implements Serializable {
         this.resources = resources;
     }
 
-    public HashMap<ResourceTag, Integer> getProduction() {
-        return production;
+    public HashMap<ResourceTag, Integer> getProductions() {
+        return productions;
     }
 
-    public void setProduction(HashMap<ResourceTag, Integer> production) {
-        this.production = production;
+    public void setProductions(HashMap<ResourceTag, Integer> production) {
+        this.productions = production;
     }
 
     public int getMyTag(CardTag tag) {

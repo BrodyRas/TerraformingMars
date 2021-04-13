@@ -10,10 +10,13 @@ import androidx.legacy.widget.Space;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -88,14 +91,13 @@ public class TableauFragment extends Fragment {
     private class TableauHolder extends RecyclerView.ViewHolder {
 
         private final ImageView icon;
-        private final TextView quantity;
-        private final TextView production;
+        private final EditText quantity;
+        private final EditText production;
         private final Button incQuant;
         private final Button decQuant;
         private final Button incProd;
         private final Button decProd;
         private final LinearLayout prodRow;
-        private final Space topSpace;
 
         /**
          * Creates an instance and sets an OnClickListener for the user's row.
@@ -114,7 +116,6 @@ public class TableauFragment extends Fragment {
                 incProd = itemView.findViewById(R.id.increase);
                 decProd = itemView.findViewById(R.id.decrease);
                 prodRow = itemView.findViewById(R.id.prod);
-                topSpace = itemView.findViewById(R.id.topSpace);
 
             } else {
                 icon = null;
@@ -125,7 +126,6 @@ public class TableauFragment extends Fragment {
                 incProd = null;
                 decProd = null;
                 prodRow = null;
-                topSpace = null;
             }
         }
 
@@ -138,6 +138,32 @@ public class TableauFragment extends Fragment {
         void bindRow(TableauRow row) {
             icon.setImageResource(row.iconID);
             quantity.setBackgroundColor(getResources().getColor(row.colorID,null));
+
+            quantity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if(s.toString().length() != 0) presenter.setQ(row.tag,Integer.decode(s.toString()));
+                }
+            });
+
+            production.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if(s.toString().length() != 0) presenter.setP(row.tag,Integer.decode(s.toString()));
+                }
+            });
 
             incQuant.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -172,7 +198,6 @@ public class TableauFragment extends Fragment {
             });
 
             if (row.rownum == 0) prodRow.setVisibility(View.GONE);
-            else topSpace.setVisibility(View.GONE);
 
             quantity.setText(presenter.tapQ(row.tag, 0));
             production.setText(presenter.tapP(row.tag, 0));
@@ -246,7 +271,7 @@ public class TableauFragment extends Fragment {
                 view =layoutInflater.inflate(R.layout.loading_row, parent, false);
 
             } else {
-                view = layoutInflater.inflate(R.layout.tableau_row, parent, false);
+                view = layoutInflater.inflate(R.layout.tableau_row_new, parent, false);
             }
 
             return new TableauHolder(view, viewType);

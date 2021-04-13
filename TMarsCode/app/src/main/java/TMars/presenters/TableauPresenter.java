@@ -28,6 +28,18 @@ public class TableauPresenter {
         return String.valueOf(player.tableau.getProduction(rowNumber));
     }
 
+    public String setQ(TagProvider.ResourceTag rowNumber, int amount)
+    {
+        player.tableau.setResource(rowNumber,amount);
+        return String.valueOf(player.tableau.getResource(rowNumber));
+    }
+
+    public String setP(TagProvider.ResourceTag rowNumber, int amount)
+    {
+        player.tableau.setProduction(rowNumber,amount);
+        return String.valueOf(player.tableau.getProduction(rowNumber));
+    }
+
     public String tapMe(TagProvider.CardTag rowNumber, int amount)
     {
         player.tableau.updateMyTags(rowNumber,amount);

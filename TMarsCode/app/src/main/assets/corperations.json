@@ -5,7 +5,7 @@
       "resources": {
         "Credits": 57
       },
-      "production":{
+      "productions":{
       },
       "tags": {
       }
@@ -17,7 +17,7 @@
         "Plant":3,
         "Credits":36
       },
-      "production":{
+      "productions":{
         "Plant":2
       },
       "tags": {
@@ -30,7 +30,7 @@
       "resources":{
         "Credits":42
       },
-      "production":{
+      "productions":{
         "Heat":3
       },
       "tags": {
@@ -44,7 +44,7 @@
         "Iron":5,
         "Credits":30
       },
-      "production":{
+      "productions":{
         "Iron":1
       },
       "tags": {
@@ -58,7 +58,7 @@
         "Iron":20,
         "Credits":30
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Building":1
@@ -70,7 +70,7 @@
       "resources":{
         "Credits":45
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Science":1
@@ -83,7 +83,7 @@
         "Titanium":10,
         "Credits":23
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Space":1
@@ -95,7 +95,7 @@
       "resources":{
         "Credits":40
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Building":1
@@ -107,7 +107,7 @@
       "resources":{
         "Credits":48
       },
-      "production":{
+      "productions":{
         "Energy":1
       },
       "tags": {
@@ -120,7 +120,7 @@
       "resources":{
         "Credits":40
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Earth":1
@@ -132,7 +132,7 @@
       "resources":{
         "Credits":60
       },
-      "production":{
+      "productions":{
       },
       "tags": {
         "Earth":1
@@ -144,7 +144,7 @@
       "resources":{
         "Credits":42
       },
-      "production":{
+      "productions":{
         "Titanium":1
       },
       "tags": {

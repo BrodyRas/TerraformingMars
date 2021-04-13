@@ -23,7 +23,7 @@ public class Tableau implements Serializable {
         production = new HashMap<>();
         myTags = new HashMap<>();*/
         resources = corp.getResources();
-        productions = corp.getProduction();
+        productions = corp.getProductions();
         myTags = corp.getTags();
 
         theirTags = new HashMap<>();

@@ -3,115 +3,117 @@
     "name": "Colonizer Training Camp",
     "id": "001",
     "tags": {
-      "jovian": 1,
-      "building": 1
+      "Jovian": 1,
+      "Building": 1
     },
     "cost": 8,
-    "resources": {
-      "rating": 2
+    "points":
+    {
+      "baseScore":2,
+      "pointPerResource":0,
+      "resourceCount":0
     },
-    "production": {},
-    "effects": {}
+    "resources": {},
+    "productions": {}
   },
   {
     "name": "Asteroid Mining Consortium",
     "id": "002",
     "tags": {
-      "jovian": 1
+      "Jovian": 1
     },
     "cost": 13,
-    "resources": {
-      "rating": 1
+    "resources": {},
+    "productions": {
+      "Titanium": 1
     },
-    "production": {
-      "titanium": 1
-    },
-    "effects": {
-
+    "points":
+    {
+      "baseScore":1,
+      "pointPerResource":0,
+      "resourceCount":0
     }
   },
   {
     "name": "Deep Well Heating",
     "id": "003",
     "tags": {
-      "energy": 1,
-      "building": 1
+      "Energy": 1,
+      "Building": 1
     },
     "cost": 13,
-    "resources": {
-      "energy": 1
-    },
-    "production": {
-      "energy": 1
-    },
-    "effects": {}
+    "resources": {},
+    "productions": {
+      "Energy": 1
+    }
   },
   {
     "name": "Cloud Seeding",
     "id": "004",
     "tags": {},
     "cost": 11,
-    "resources": {
-      "energy": 1
-    },
-    "production": {
-      "credits": -1,
-      "heat": -1,
-      "plant": 2
-    },
-    "effects": {}
+    "resources": {},
+    "productions": {
+      "Credits": -1,
+      "Plant": 2
+    }
   },
   {
     "name": "Capital",
     "id": "008",
     "tags": {
-      "city": 1,
-      "building": 1
+      "City": 1,
+      "Building": 1
     },
     "cost": 26,
-    "resources": {
-      "city": 1,
-      "rating": 1
+    "resources": {},
+    "productions": {
+      "Energy": -2,
+      "Credits": 5
     },
-    "production": {
-      "energy": -2,
-      "credits": 5
-    },
-    "effects": {}
+    "points":
+    {
+      "baseScore":0,
+      "pointPerResource":1,
+      "resourceCount":0
+    }
   },
   {
-    "name": "Domed Crater",
-    "id": "016",
-    "tags": {
-      "city": 1,
-      "building": 1
+    "id":"016",
+    "name":"Domed Crater",
+    "cost":24,
+    "points":
+    {
+      "baseScore":1,
+      "pointPerResource":0,
+      "resourceCount":0
     },
-    "cost": 24,
-    "resources": {
-      "city": 1,
-      "plant": 3,
-      "rating": 1
+    "resources":{
+      "Plant":3
     },
-    "production": {
-      "energy": -1,
-      "credits": 3
+    "productions":
+    {
+      "Energy":-1,
+      "Credits":3
     },
-    "effects": {}
+    "tags":
+    {
+      "Building":1,
+      "City":1
+    }
   },
   {
     "name": "Noctis City",
     "id": "017",
     "tags": {
-      "city": 1,
-      "building": 1
+      "City": 1,
+      "Building": 1
     },
     "cost": 24,
-    "resources": {
-      "city": 1,
-    },
-    "production": {
-      "energy": -1,
-      "credits": 3
+    "resources": {},
+    "productions": {
+      "Energy": -1,
+      "Credits": 3
     },
     "effects": {}
   },
@@ -119,48 +121,50 @@
     "name": "Methane From Titan",
     "id": "018",
     "tags": {
-      "jovian": 1,
-      "space": 1
+      "Jovian": 1,
+      "Space": 1
     },
     "cost": 28,
-    "resources": {
-      "rating": 2
+    "resources": {},
+    "productions": {
+      "Heat": 2,
+      "Plant": 2
     },
-    "production": {
-      "heat": 2,
-      "plant": 2
-    },
-    "effects": {}
+    "points":
+    {
+      "baseScore":2,
+      "pointPerResource":0,
+      "resourceCount":0
+    }
   },
   {
     "name": "Phobos Space Haven",
     "id": "021",
     "tags": {
-      "city": 1,
-      "space": 1
+      "City": 1,
+      "Space": 1
     },
     "cost": 25,
-    "resources": {
-      "city": 1,
-      "rating": 3
+    "resources": {},
+    "productions": {
+      "Titanium": 1
     },
-    "production": {
-      "titanium": 1
-    },
-    "effects": {}
+    "points":
+    {
+      "baseScore":3,
+      "pointPerResource":0,
+      "resourceCount":0
+    }
   },
   {
     "name": "Black Polar Dust",
     "id": "022",
     "tags": {},
     "cost": 15,
-    "resources": {
-      "water": 1
-    },
-    "production": {
-      "credits": -2,
-      "heat": 3
-    },
-    "effects": {}
+    "resources": {},
+    "productions": {
+      "Credits": -2,
+      "Heat": 3
+    }
   }
 ]

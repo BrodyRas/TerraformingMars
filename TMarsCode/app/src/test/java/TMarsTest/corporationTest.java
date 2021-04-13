@@ -1,20 +1,17 @@
 package TMarsTest;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 
+import TMars.model.Card;
 import TMars.model.Corporation;
+import TMars.model.GreenCard;
+import TMars.model.Score;
 import TMars.providers.TagProvider;
 
 public class corporationTest {
@@ -28,6 +25,7 @@ public class corporationTest {
     }
 
     Corporation corp;
+    Card card;
 
     @BeforeEach
     public void setup()
@@ -46,9 +44,24 @@ public class corporationTest {
         //production
         map2 = new HashMap<TagProvider.ResourceTag, Integer>();
         map2.put(TagProvider.ResourceTag.Plant, 2);
-        corp.setProduction(map2);
+        corp.setProductions(map2);
 
-
+        card = new GreenCard();
+        card.setName("Domed Crater");
+        card.setId("016");
+        card.setPoints(new Score(1,0,0));
+        card.setCost(24);
+        map = new HashMap<TagProvider.CardTag, Integer>();
+        map.put(TagProvider.CardTag.City,1);
+        map.put(TagProvider.CardTag.Building,1);
+        card.setTags(map);
+        map2 = new HashMap<TagProvider.ResourceTag, Integer>();
+        map2.put(TagProvider.ResourceTag.Plant,3);
+        card.setResources(map2);
+        map2 = new HashMap<TagProvider.ResourceTag, Integer>();
+        map2.put(TagProvider.ResourceTag.Energy, -1);
+        map2.put(TagProvider.ResourceTag.Credits, 3);
+        card.setProductions(map2);
     }
 
     @Test
@@ -57,6 +70,15 @@ public class corporationTest {
         String out = serialize(corp);
         Corporation result = deserialize(out, Corporation.class);
         Assertions.assertEquals(corp.getName(), result.getName());
-        Assertions.assertEquals(0,result.getProduction().get(TagProvider.ResourceTag.Energy));
+        Assertions.assertEquals(0,result.getProductions().get(TagProvider.ResourceTag.Energy));
+    }
+
+    @Test
+    public void testSerial2() {
+        // Set the double to return the specified response when it gets the specified request
+        String out = serialize(card);
+        Card result = deserialize(out, GreenCard.class);
+        Assertions.assertEquals(card.getName(), result.getName());
+        Assertions.assertEquals(0,result.getProductions().get(TagProvider.ResourceTag.Energy));
     }
 }

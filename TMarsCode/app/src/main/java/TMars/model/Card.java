@@ -1,6 +1,5 @@
 package TMars.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import TMars.providers.TagProvider;
@@ -16,7 +15,7 @@ public abstract class Card {
     private Requirement requires;
     private Score points;
     private HashMap<TagProvider.ResourceTag, Integer> resources;
-    private HashMap<TagProvider.ResourceTag, Integer> production;
+    private HashMap<TagProvider.ResourceTag, Integer> productions;
     private HashMap<TagProvider.CardTag, Integer> tags;
 
     public Card() { };
@@ -73,12 +72,12 @@ public abstract class Card {
         this.resources = resources;
     }
 
-    public HashMap<TagProvider.ResourceTag, Integer> getProduction() {
-        return production;
+    public HashMap<TagProvider.ResourceTag, Integer> getProductions() {
+        return productions;
     }
 
-    public void setProduction(HashMap<TagProvider.ResourceTag, Integer> production) {
-        this.production = production;
+    public void setProductions(HashMap<TagProvider.ResourceTag, Integer> productions) {
+        this.productions = productions;
     }
 
     public HashMap<TagProvider.CardTag, Integer> getTags() {

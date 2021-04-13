@@ -32,6 +32,14 @@ public class GlobalAssets {
             is.close();
             String json = new String(buffer, "UTF-8");
             corps = deserialize(json, Corporation[].class);
+
+            is = assets.open("cards.json");
+            size = is.available();
+            buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            cards = deserialize(json, GreenCard[].class);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -42,9 +50,13 @@ public class GlobalAssets {
         return corps[id];
     }
 
-    public Card getCard(int id)
+    public Card getCard(String id)
     {
-        return cards[id];
+        for (int i = 0; i < cards.length; ++i)
+        {
+            if (cards[i].getId().equals(id)) return cards[i];
+        }
+        return null;
     }
 
     public static <T> T deserialize(String value, Class<T> returnType) {

@@ -59,6 +59,10 @@ public class GlobalAssets {
         return null;
     }
 
+    public Card[] getCards() {
+        return cards;
+    }
+
     public static <T> T deserialize(String value, Class<T> returnType) {
         return (new Gson()).fromJson(value, returnType);
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import TMars.fragments.CardFragmentSelect;
 import TMars.fragments.HelpFragment;
 import TMars.fragments.PlaceholderFragment;
 import TMars.fragments.TableauFragment;
@@ -24,6 +25,7 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final int TABLEAU_FRAGMENT_POSITION = 0;
     private static final int TAG_FRAGMENT_POSITION = 1;
+    private static final int CARD_FRAGMENT_POSITION = 2;
     private static final int HELP_FRAGMENT_POSITION = 3;
 
     @StringRes
@@ -42,6 +44,8 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     {
         ((TableauFragment) tabs[TABLEAU_FRAGMENT_POSITION]).refresh();
         ((TagFragment) tabs[TAG_FRAGMENT_POSITION]).refresh();
+        //switch card tab fragment if necessary.
+        //if player.cardSelected
     }
 
     @Override
@@ -57,8 +61,13 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         {
             tabs[HELP_FRAGMENT_POSITION] = HelpFragment.newInstance();
             return tabs[HELP_FRAGMENT_POSITION];
-        }
-        else
+        } else if (position == CARD_FRAGMENT_POSITION)
+        {
+            //check a flag in player to know which version of card to select.
+            //if player.cardSelected
+            tabs[CARD_FRAGMENT_POSITION] = CardFragmentSelect.newInstance(player);
+            return tabs[CARD_FRAGMENT_POSITION];
+        } else
         {
             return PlaceholderFragment.newInstance(position + 1);
         }

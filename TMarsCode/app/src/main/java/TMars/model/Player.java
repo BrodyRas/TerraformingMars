@@ -8,7 +8,16 @@ public class Player implements java.io.Serializable {
     //tell if a player needs init called or not
     private static boolean instantiated;
 
-    private Player(Corporation corp){ tableau = new Tableau(corp); }
+    public boolean cardSelected;
+
+    public Card selectedCard;
+
+    private Player(Corporation corp)
+    {
+        tableau = new Tableau(corp);
+        cardSelected = false;
+        selectedCard = null;
+    }
 
     public static Player getInstance(Corporation corp){
         if(instance == null){
@@ -29,12 +38,23 @@ public class Player implements java.io.Serializable {
         tableau = new Tableau(corp);
     }
 
-
     public Tableau getTableau() {
         return tableau;
     }
 
     public void setTableau(Tableau tableau) {
         this.tableau = tableau;
+    }
+
+    public void selectCard(Card selected)
+    {
+        cardSelected = true;
+        selectedCard = selected;
+    }
+
+    public void playedCard()
+    {
+        cardSelected = false;
+        selectedCard = null;
     }
 }

@@ -87,4 +87,6 @@ public abstract class Card {
     public void setTags(HashMap<TagProvider.CardTag, Integer> tags) {
         this.tags = tags;
     }
+
+
 }

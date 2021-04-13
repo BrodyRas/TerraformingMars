@@ -172,20 +172,16 @@ public class TagFragment extends Fragment {
             else
             {
                 icon.setVisibility(View.INVISIBLE);
-                incMe.setVisibility(View.GONE);
-                decMe.setVisibility(View.GONE);
-                incO.setVisibility(View.GONE);
-                decO.setVisibility(View.GONE);
+                incMe.setVisibility(View.INVISIBLE);
+                decMe.setVisibility(View.INVISIBLE);
+                incO.setVisibility(View.INVISIBLE);
+                decO.setVisibility(View.INVISIBLE);
                 quantity.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 quantity.setText("Yours");
-                quantity.setTextSize(20);
-                ViewGroup.LayoutParams lp = quantity.getLayoutParams();
-                lp.width = (250);
-                quantity.setLayoutParams(lp);
+                quantity.setTextSize(16);
                 production.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 production.setText("Theirs");
-                production.setTextSize(20);
-                production.setLayoutParams(lp);
+                production.setTextSize(16);
             }
         }
     }
@@ -257,7 +253,7 @@ public class TagFragment extends Fragment {
                 view =layoutInflater.inflate(R.layout.loading_row, parent, false);
 
             } else {
-                view = layoutInflater.inflate(R.layout.tag_row, parent, false);
+                view = layoutInflater.inflate(R.layout.tag_row_new, parent, false);
             }
 
             return new TagHolder(view, viewType);

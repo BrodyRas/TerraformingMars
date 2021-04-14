@@ -1,5 +1,7 @@
 package TMars.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -42,21 +44,24 @@ public class CardFragmentSelect extends Fragment {
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
-    private final Player player;
+    private final CardInterface observer;
+    private Activity mActivity;
 
     private CardRecyclerViewAdapter cardRecyclerViewAdapter;
 
-    private CardFragmentSelect(Player player) { this.player = player; }
+    private CardFragmentSelect(CardInterface observer)
+    {
+        this.observer = observer;
+    }
 
     /**
      * Creates an instance of the fragment and places the user and auth token in an arguments
      * bundle assigned to the fragment.
      *
-     * @param player the current player.
      * @return the fragment.
      */
-    public static CardFragmentSelect newInstance(Player player) {
-        CardFragmentSelect fragment = new CardFragmentSelect(player);
+    public static CardFragmentSelect newInstance(CardInterface observer) {
+        CardFragmentSelect fragment = new CardFragmentSelect(observer);
         return fragment;
     }
 
@@ -78,9 +83,24 @@ public class CardFragmentSelect extends Fragment {
         return view;
     }
 
-    public void refresh()
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            mActivity =(Activity) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
+
+    public void refresh(Fragment replace)
     {
-        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        if(mActivity != null) getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(replace).commit();
     }
 
 
@@ -173,15 +193,20 @@ public class CardFragmentSelect extends Fragment {
             name.setText(card.getName());
 
             //special bindings
-            String cardText = "Production:\n";
+            String cardText = "";//"Production:\n";
+            Boolean first = true;
             HashMap<TagProvider.ResourceTag, Integer> res = card.getProductions();
             for (TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()) {
                 if (res.get(tag) != null)
                 {
+                    if (first) {
+                        cardText += "Production:\n";
+                        first = false;
+                    }
                     int val = res.get(tag);
                     if(val > 0)
                     {
-                        cardText += val + " " + TagProvider.ResToString(tag) + ", ";
+                        cardText += "+" + val + " " + TagProvider.ResToString(tag) + ", ";
                     }
                     else
                     {
@@ -189,15 +214,20 @@ public class CardFragmentSelect extends Fragment {
                     }
                 }
             }
-            cardText += "\nResources:\n";
+            //cardText += "\nResources:\n";
+            first = true;
             res = card.getResources();
             for (TagProvider.ResourceTag tag : TagProvider.ResourceTag.values()) {
                 if (res.get(tag) != null)
                 {
+                    if (first) {
+                        cardText += "\nResources:\n";
+                        first = false;
+                    }
                     int val = res.get(tag);
                     if(val > 0)
                     {
-                        cardText += val + " " + TagProvider.ResToString(tag) + ", ";
+                        cardText += "+" + val + " " + TagProvider.ResToString(tag) + ", ";
                     }
                     else
                     {
@@ -215,8 +245,7 @@ public class CardFragmentSelect extends Fragment {
             select.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    player.selectCard(card);
-                    // trigger something somehow
+                    observer.cardSelected(card);
                 }
             });
         }

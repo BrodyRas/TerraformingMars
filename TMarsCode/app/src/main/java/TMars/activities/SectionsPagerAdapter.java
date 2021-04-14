@@ -9,11 +9,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import TMars.fragments.CardFragmentPlay;
 import TMars.fragments.CardFragmentSelect;
+import TMars.fragments.CardInterface;
 import TMars.fragments.HelpFragment;
 import TMars.fragments.PlaceholderFragment;
 import TMars.fragments.TableauFragment;
 import TMars.fragments.TagFragment;
+import TMars.model.Card;
 import TMars.model.Player;
 import edu.byu.cs.tweeter.R;
 
@@ -21,7 +24,7 @@ import edu.byu.cs.tweeter.R;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to one of the sections/tabs/pages
  * of the Main Activity.
  */
-class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+class SectionsPagerAdapter extends FragmentStatePagerAdapter implements CardInterface {
 
     private static final int TABLEAU_FRAGMENT_POSITION = 0;
     private static final int TAG_FRAGMENT_POSITION = 1;
@@ -33,9 +36,11 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     private Fragment[] tabs = new Fragment[]{null,null,null,null};
     private final Context mContext;
     private final Player player;
+    private final FragmentManager mFragmentManager;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm, Player player) {
         super(fm);
+        mFragmentManager = fm;
         mContext = context;
         this.player = player;
     }
@@ -44,8 +49,6 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     {
         ((TableauFragment) tabs[TABLEAU_FRAGMENT_POSITION]).refresh();
         ((TagFragment) tabs[TAG_FRAGMENT_POSITION]).refresh();
-        //switch card tab fragment if necessary.
-        //if player.cardSelected
     }
 
     @Override
@@ -64,13 +67,21 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         } else if (position == CARD_FRAGMENT_POSITION)
         {
             //check a flag in player to know which version of card to select.
-            //if player.cardSelected
-            tabs[CARD_FRAGMENT_POSITION] = CardFragmentSelect.newInstance(player);
+            if (!player.cardSelected) tabs[CARD_FRAGMENT_POSITION] = CardFragmentSelect.newInstance(this);
+            else tabs[CARD_FRAGMENT_POSITION] = CardFragmentPlay.newInstance(player, this);
             return tabs[CARD_FRAGMENT_POSITION];
         } else
         {
             return PlaceholderFragment.newInstance(position + 1);
         }
+    }
+
+    @Override
+    public int getItemPosition(Object object)
+    {
+        if ((object instanceof CardFragmentSelect && player.cardSelected) ||
+                (object instanceof  CardFragmentPlay && !player.cardSelected)) return POSITION_NONE;
+        else return POSITION_UNCHANGED;
     }
 
     @Nullable
@@ -83,5 +94,21 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         // Show 4 total pages.
         return 4;
+    }
+
+    @Override
+    public void cardSelected(Card card) {
+        player.selectCard(card);
+        mFragmentManager.beginTransaction().remove(tabs[CARD_FRAGMENT_POSITION]).commit();
+        notifyDataSetChanged();
+        refresh();
+    }
+
+    @Override
+    public void cardPlayed() {
+        player.playedCard();
+        mFragmentManager.beginTransaction().remove(tabs[CARD_FRAGMENT_POSITION]).commit();
+        notifyDataSetChanged();
+        refresh();
     }
 }

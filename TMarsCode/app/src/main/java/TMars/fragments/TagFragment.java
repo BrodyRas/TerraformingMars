@@ -1,5 +1,7 @@
 package TMars.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -38,6 +40,7 @@ public class TagFragment extends Fragment {
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
     private final TableauPresenter presenter;
+    private Activity mActivity;
 
     private TagRecyclerViewAdapter tagRecyclerViewAdapter;
 
@@ -75,9 +78,24 @@ public class TagFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            mActivity =(Activity) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mActivity = null;
+    }
+
     public void refresh()
     {
-        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        if(mActivity != null) getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
 

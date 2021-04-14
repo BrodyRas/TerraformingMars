@@ -7,44 +7,44 @@
     android:background="@color/colorPrimary">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/spendMoney"
+        android:id="@+id/spendTitanium"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/spendMoney3"
+        app:layout_constraintEnd_toStartOf="@+id/spendIron"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/spendMoney2"
+        app:layout_constraintStart_toEndOf="@+id/spendMoney"
         app:layout_constraintTop_toBottomOf="@+id/titaniumValue"
         app:srcCompat="@drawable/res_titanium" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/spendMoney3"
+        android:id="@+id/spendIron"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/spendMoney4"
+        app:layout_constraintEnd_toStartOf="@+id/spendHeat"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/spendMoney"
+        app:layout_constraintStart_toEndOf="@+id/spendTitanium"
         app:layout_constraintTop_toBottomOf="@+id/ironValue"
         app:srcCompat="@drawable/res_steel" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/spendMoney4"
+        android:id="@+id/spendHeat"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/spendMoney3"
+        app:layout_constraintStart_toEndOf="@+id/spendIron"
         app:layout_constraintTop_toBottomOf="@+id/heatValue"
         app:srcCompat="@drawable/res_heat" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/spendMoney2"
+        android:id="@+id/spendMoney"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/spendMoney"
+        app:layout_constraintEnd_toStartOf="@+id/spendTitanium"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/moneyDiscount"
@@ -163,59 +163,63 @@
 
     <TextView
         android:id="@+id/moneyAmount"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/marsfont"
-        android:text="TextView"
+        android:text="0"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/titaniumAmount"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spendMoney2" />
-
-    <TextView
-        android:id="@+id/ironAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/marsfont"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/heatAmount"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/titaniumAmount"
-        app:layout_constraintTop_toBottomOf="@+id/spendMoney3" />
-
-    <TextView
-        android:id="@+id/heatAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/marsfont"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ironAmount"
-        app:layout_constraintTop_toBottomOf="@+id/spendMoney4" />
-
-    <TextView
-        android:id="@+id/titaniumAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/marsfont"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/ironAmount"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/moneyAmount"
         app:layout_constraintTop_toBottomOf="@+id/spendMoney" />
 
     <TextView
-        android:id="@+id/moneyDiscount"
-        android:layout_width="wrap_content"
+        android:id="@+id/ironAmount"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/marsfont"
-        android:text="TextView"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/heatAmount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/titaniumAmount"
+        app:layout_constraintTop_toBottomOf="@+id/spendIron" />
+
+    <TextView
+        android:id="@+id/heatAmount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/marsfont"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ironAmount"
+        app:layout_constraintTop_toBottomOf="@+id/spendHeat" />
+
+    <TextView
+        android:id="@+id/titaniumAmount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/marsfont"
+        android:text="0"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/ironAmount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/moneyAmount"
+        app:layout_constraintTop_toBottomOf="@+id/spendTitanium" />
+
+    <TextView
+        android:id="@+id/moneyDiscount"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/marsfont"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/titaniumValue"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -223,11 +227,12 @@
 
     <TextView
         android:id="@+id/titaniumValue"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/marsfont"
-        android:text="TextView"
+        android:text="3"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/ironValue"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/moneyDiscount"
@@ -235,26 +240,27 @@
 
     <TextView
         android:id="@+id/ironValue"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/marsfont"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/spendMoney4"
+        android:text="2"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/spendHeat"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/spendMoney"
+        app:layout_constraintStart_toEndOf="@+id/spendTitanium"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/heatValue"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/marsfont"
-        android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/spendMoney3"
+        app:layout_constraintStart_toEndOf="@+id/spendIron"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
